@@ -16,5 +16,15 @@ public interface ProductoClienteRest {
 	
 	@GetMapping("/producto/{id}")
 	public Producto encontrarProducto(@PathVariable Long id);
+	
+	/* V.-18
+	 * Puedo utilizar balanceo de carga con "Ribbon" para desacoplar aplicación y utilizar mas el .properties
+	 * Importante para añadir Ribbon:
+	 * 		- La versión de spring es importante junto con "spring-cloud.version" para usar Ribbon
+	 * 		- Dependencia utilizada "spring-cloud-starter-netflix-ribbon"
+	 * 		- Se elimina de esta clase la "url" y se utiliza el "name" del servicio en el .properties con la lista de servidores:
+	 * 			"servicio-productos.ribbon.listOfServers=localhost:8001,localhost:9001"
+	 * 		- Anotacion @RibbonClient(name = "servicio-productos") en clase de arranque aplicación Spring
+	 * */
 
 }
